@@ -22,7 +22,7 @@ summary(tumor_data)
 # Write to xlsx file
 #write.xlsx(tumor_data, file = "tumor_data.xlsx")
 # Write to CSV
-write.csv(tumor_data, "tumor_data.csv")
+write.csv(tumor_data, "tumor_data.csv", row.names = FALSE)
 
 # choosing the columns that ccorresponds the T cell data
 Cell_ID_Myeloid <- factor(imported_data$Cell_ID_Myeloid...6)
@@ -43,4 +43,4 @@ summary(t_cell_data)
 # Write to xlsx file
 #write.xlsx(t_cell_data, file = "t_cell_data.xlsx")
 # Write to CSV
-write.csv(t_cell_data, "t_cell_data.csv")
+write.csv(t_cell_data, "t_cell_data.csv", row.names = FALSE)
