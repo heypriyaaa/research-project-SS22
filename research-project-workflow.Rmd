@@ -1,0 +1,19 @@
+---
+title: "Data Analysis of T-Cell Dysfunction in the Glioblastoma Microenvironment is Mediated by Myeloid Cells Releasing Interleukin-10"
+author: "Banupriya Jayarama Reddy"
+output: html_notebook
+editor_options: 
+  chunk_output_type: inline
+---
+
+Load the data into objects
+
+```{r}
+# load the data into individual objects
+tumor_data <- read.csv(file = "tumor_data.csv")
+t_cell_data <- read.csv(file = "t_cell_data.csv")
+# load the first six line of data just to double check
+head(tumor_data)
+head(t_cell_data)
+```
+
