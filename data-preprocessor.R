@@ -1,6 +1,6 @@
 # load library
 library(readxl)
-library(xlsx)
+#library(xlsx) # uncomment to save data in .xlsx format
 
 # load to an object
 imported_data = read_excel('41467_2022_28523_MOESM6_ESM.xlsx')
