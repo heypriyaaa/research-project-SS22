@@ -6,14 +6,60 @@ editor_options:
   chunk_output_type: inline
 ---
 
+Load required library
+
+```{r}
+#===============================================================================
+# Library
+#===============================================================================
+library(tibble)
+```
+
+
 Load the data into objects
 
 ```{r}
+#===============================================================================
+# Import
+#===============================================================================
 # load the data into individual objects
 tumor_data <- read.csv(file = "tumor_data.csv")
 t_cell_data <- read.csv(file = "t_cell_data.csv")
 # load the first six line of data just to double check
 head(tumor_data)
 head(t_cell_data)
+
+#===============================================================================
+# Tidy
+#===============================================================================
+# clean up the data by making them into factor, somehow factor in data-preprocessor.R did not work
+# tumor data
+tumor_data$Cell_ID_Myeloid <- as.factor(tumor_data$Cell_ID_Myeloid)
+tumor_data$Cell_ID_Tumor <- as.factor(tumor_data$Cell_ID_Tumor)
+tumor_data$Cell_type <- as.factor(tumor_data$Cell_type)
+# use tibble to tidy up the data
+tumor_data <- as_tibble(tumor_data)
+
+# t cell data
+t_cell_data$Cell_ID_Myeloid <- as.factor(t_cell_data$Cell_ID_Myeloid)
+t_cell_data$Cell_ID_T_Cell <- as.factor(t_cell_data$Cell_ID_T_Cell)
+t_cell_data$Cell_type <- as.factor(t_cell_data$Cell_type)
+# use tibble to tidy up the data
+t_cell_data <- as_tibble(t_cell_data)
+
+# generate summary and correlation to give an overview
+summary(t_cell_data)
+summary(tumor_data)
+```
+
+Reproducing the density graph like in the Figure 6c
+
+```{r}
+#===============================================================================
+# Validate
+#===============================================================================
+d_tumor_distance_hpositive <- density(tumor_data$Distance[tumor_data$Cell_type == "H+"])
+
+plot(d_tumor_distance_hpositive)
 ```
 
