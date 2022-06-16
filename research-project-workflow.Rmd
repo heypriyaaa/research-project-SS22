@@ -12,7 +12,8 @@ Load required library
 #===============================================================================
 # Library
 #===============================================================================
-library(tibble)
+library(tidyverse)
+library(corrplot)
 ```
 
 
@@ -89,5 +90,21 @@ The density graph produced are similar shaped to the Figure 6c in the paper but 
 #===============================================================================
 # Understand (Transform, Model, Visualize)
 #===============================================================================
+# generating some graph for interpretation
+# tumor data
+pie(table(tumor_data$Cell_type), main = "Cell type in Tumor data")
+plot(tumor_data$Cell_ID_Myeloid, tumor_data$Distance)
+plot(tumor_data$Cell_ID_Tumor, tumor_data$Distance)
+#plot(tumor_data$Distance, tumor_data$Cell_ID_Myeloid) # scatterplot, too much points
+#plot(tumor_data$Distance, tumor_data$Cell_ID_Tumor)
+plot(tumor_data$Cell_type, tumor_data$Distance)
+
+# t cell data
+pie(table(t_cell_data$Cell_type), main = "Cell type in T Cell data")
+plot(t_cell_data$Cell_ID_Myeloid, t_cell_data$Distance)
+plot(t_cell_data$Cell_ID_T_Cell, t_cell_data$Distance)
+#plot(t_cell_data$Distance, t_cell_data$Cell_ID_Myeloid) # scatterplot, too much points
+#plot(t_cell_data$Distance, t_cell_data$Cell_ID_T_Cell)
+plot(t_cell_data$Cell_type, t_cell_data$Distance)
 ```
 
