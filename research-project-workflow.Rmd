@@ -58,8 +58,24 @@ Reproducing the density graph like in the Figure 6c
 #===============================================================================
 # Validate
 #===============================================================================
-d_tumor_distance_hpositive <- density(tumor_data$Distance[tumor_data$Cell_type == "H+"])
+# tumor
+# compute density
+density_tumor_distance_hpositive <- density(tumor_data$Distance[tumor_data$Cell_type == "H+"])
+density_tumor_distance_hnegative <- density(tumor_data$Distance[tumor_data$Cell_type == "H-"])
+# plot density graph
+plot(density_tumor_distance_hpositive, lwd = 2, col = "blue", main = "Distance to Tumor cells")
+polygon(density_tumor_distance_hpositive, col = rgb(0, 0, 1, alpha = 0.5))
+lines(density_tumor_distance_hnegative, lwd = 2, col = "red")
+polygon(density_tumor_distance_hnegative, col = rgb(1, 0, 0, alpha = 0.5))
 
-plot(d_tumor_distance_hpositive)
+# t cell
+# compute density
+density_t_cell_distance_hpositive <- density(t_cell_data$Distance[t_cell_data$Cell_type == "H+"])
+density_t_cell_distance_hnegative <- density(t_cell_data$Distance[t_cell_data$Cell_type == "H-"])
+# plot density graph
+plot(density_t_cell_distance_hpositive, lwd = 2, col = "blue", main = "Distance to T cells")
+polygon(density_t_cell_distance_hpositive, col = rgb(0, 0, 1, alpha = 0.5))
+lines(density_t_cell_distance_hnegative, lwd = 2, col = "red")
+polygon(density_t_cell_distance_hnegative, col = rgb(1, 0, 0, alpha = 0.5))
 ```
 
