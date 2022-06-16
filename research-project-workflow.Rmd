@@ -16,7 +16,8 @@ library(tibble)
 ```
 
 
-Load the data into objects
+Import the data into objects but somehow the factor was not kept from the `data-preprocessor.R` script so have to tidy up the data again for further data analysis.
+
 
 ```{r}
 #===============================================================================
@@ -52,7 +53,7 @@ summary(t_cell_data)
 summary(tumor_data)
 ```
 
-Reproducing the density graph like in the Figure 6c
+Reproducing the density graph like in the Figure 6c for the purpose of validating the data.
 
 ```{r}
 #===============================================================================
@@ -63,19 +64,30 @@ Reproducing the density graph like in the Figure 6c
 density_tumor_distance_hpositive <- density(tumor_data$Distance[tumor_data$Cell_type == "H+"])
 density_tumor_distance_hnegative <- density(tumor_data$Distance[tumor_data$Cell_type == "H-"])
 # plot density graph
+#png(file = "./density_plot_distance_to_tumor.png") # uncomment this and dev.off to print image in png format
 plot(density_tumor_distance_hpositive, lwd = 2, col = "blue", main = "Distance to Tumor cells")
 polygon(density_tumor_distance_hpositive, col = rgb(0, 0, 1, alpha = 0.5))
 lines(density_tumor_distance_hnegative, lwd = 2, col = "red")
 polygon(density_tumor_distance_hnegative, col = rgb(1, 0, 0, alpha = 0.5))
+#dev.off()
 
 # t cell
 # compute density
 density_t_cell_distance_hpositive <- density(t_cell_data$Distance[t_cell_data$Cell_type == "H+"])
 density_t_cell_distance_hnegative <- density(t_cell_data$Distance[t_cell_data$Cell_type == "H-"])
 # plot density graph
+#png(file = "./density_plot_distance_to_t_cells.png")
 plot(density_t_cell_distance_hpositive, lwd = 2, col = "blue", main = "Distance to T cells")
 polygon(density_t_cell_distance_hpositive, col = rgb(0, 0, 1, alpha = 0.5))
 lines(density_t_cell_distance_hnegative, lwd = 2, col = "red")
 polygon(density_t_cell_distance_hnegative, col = rgb(1, 0, 0, alpha = 0.5))
+#dev.off()
+```
+The density graph produced are similar shaped to the Figure 6c in the paper but somehow the graphs in the paper are mixed up (the paper used Distance to T Cells as Distance to Tumor cells instead and vice versa)
+
+```{r}
+#===============================================================================
+# Understand (Transform, Model, Visualize)
+#===============================================================================
 ```
 
