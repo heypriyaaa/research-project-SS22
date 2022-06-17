@@ -64,12 +64,12 @@ Reproducing the density graph like in the Figure 6c for the purpose of validatin
 # compute density
 density_tumor_distance_hpositive <- density(tumor_data$Distance[tumor_data$Cell_type == "H+"])
 density_tumor_distance_hnegative <- density(tumor_data$Distance[tumor_data$Cell_type == "H-"])
-# plot density graph
-#png(file = "./density_plot_distance_to_tumor.png") # uncomment this and dev.off to print image in png format
-plot(density_tumor_distance_hpositive, lwd = 2, col = "blue", main = "Distance to Tumor cells")
-polygon(density_tumor_distance_hpositive, col = rgb(0, 0, 1, alpha = 0.5))
-lines(density_tumor_distance_hnegative, lwd = 2, col = "red")
-polygon(density_tumor_distance_hnegative, col = rgb(1, 0, 0, alpha = 0.5))
+ggplot(tumor_data, aes(x = Distance, color = Cell_type, fill = Cell_type)) +
+  geom_density(alpha = 0.5) +
+  labs(title = "Distance to Tumor cells", y = "Density")
+#  xlim(c(min(density_tumor_distance_hpositive$x, density_tumor_distance_hnegative$x),
+#         c(max(density_tumor_distance_hpositive$x, density_tumor_distance_hnegative$x)))) +
+#  scale_fill_discrete(name = "Cell type", labels = c("H+", "H-"))
 #dev.off()
 
 # t cell
@@ -77,11 +77,16 @@ polygon(density_tumor_distance_hnegative, col = rgb(1, 0, 0, alpha = 0.5))
 density_t_cell_distance_hpositive <- density(t_cell_data$Distance[t_cell_data$Cell_type == "H+"])
 density_t_cell_distance_hnegative <- density(t_cell_data$Distance[t_cell_data$Cell_type == "H-"])
 # plot density graph
-#png(file = "./density_plot_distance_to_t_cells.png")
-plot(density_t_cell_distance_hpositive, lwd = 2, col = "blue", main = "Distance to T cells")
-polygon(density_t_cell_distance_hpositive, col = rgb(0, 0, 1, alpha = 0.5))
-lines(density_t_cell_distance_hnegative, lwd = 2, col = "red")
-polygon(density_t_cell_distance_hnegative, col = rgb(1, 0, 0, alpha = 0.5))
+#png(file = "./density_ggplot_distance_to_t_cells.png")
+# normal plot
+#plot(density_t_cell_distance_hpositive, lwd = 2, col = "blue", main = "Distance to T cells")
+#polygon(density_t_cell_distance_hpositive, col = rgb(0, 0, 1, alpha = 0.5))
+#lines(density_t_cell_distance_hnegative, lwd = 2, col = "red")
+#polygon(density_t_cell_distance_hnegative, col = rgb(1, 0, 0, alpha = 0.5))
+# ggplot
+ggplot(t_cell_data, aes(x = Distance, color = Cell_type, fill = Cell_type)) +
+  geom_density(alpha = 0.5) +
+  labs(title = "Distance to T cells", y = "Density")
 #dev.off()
 ```
 The density graph produced are similar shaped to the Figure 6c in the paper but somehow the graphs in the paper are mixed up (the paper used Distance to T Cells as Distance to Tumor cells instead and vice versa)
