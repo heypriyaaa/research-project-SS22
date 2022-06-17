@@ -13,7 +13,8 @@ Load required library
 # Library
 #===============================================================================
 library(tidyverse)
-library(corrplot)
+library(treemapify)
+
 ```
 
 
@@ -96,8 +97,21 @@ The density graph produced are similar shaped to the Figure 6c in the paper but 
 # Understand (Transform, Model, Visualize)
 #===============================================================================
 # generating some graph for interpretation
+
+# tree map for cell types instead of pie charts because of this link
+# https://www.data-to-viz.com/caveat/pie.html
+#png(file = "./tree_map_cell_type.png")
+table_cell_type <- data.frame(table(tumor_data$Cell_type))
+ggplot(table_cell_type, aes(area = Freq, fill = Var1, 
+                            label = paste(Var1, Freq, paste("(",format(round(Freq/7888*100, 2)), "%)", sep = ""), sep = "\n"))) +
+  geom_treemap() +
+  geom_treemap_text(color = "white",
+                    place = "centre") +
+  theme(legend.position = "none") +
+  labs(title = "Tree map of cell types")
+#dev.off()
+
 # tumor data
-pie(table(tumor_data$Cell_type), main = "Cell type in Tumor data")
 plot(tumor_data$Cell_ID_Myeloid, tumor_data$Distance)
 plot(tumor_data$Cell_ID_Tumor, tumor_data$Distance)
 #plot(tumor_data$Distance, tumor_data$Cell_ID_Myeloid) # scatterplot, too much points
@@ -105,7 +119,6 @@ plot(tumor_data$Cell_ID_Tumor, tumor_data$Distance)
 plot(tumor_data$Cell_type, tumor_data$Distance)
 
 # t cell data
-pie(table(t_cell_data$Cell_type), main = "Cell type in T Cell data")
 plot(t_cell_data$Cell_ID_Myeloid, t_cell_data$Distance)
 plot(t_cell_data$Cell_ID_T_Cell, t_cell_data$Distance)
 #plot(t_cell_data$Distance, t_cell_data$Cell_ID_Myeloid) # scatterplot, too much points
