@@ -162,61 +162,61 @@ ggplot(t_cell_data, aes(x = fct_rev(Cell_type),
 
 # ggplot of histogram and frequency line of individual instead of combine like in paper
 # ggplot of histogram and frequency of tumor data
-#png(file = "./histogram_density_line_distance_tumor_cell.png")
+#png(file = "./histogram_freq_poly_distance_tumor_cell.png")
 ggplot(tumor_data, aes(x = Distance)) +
   geom_freqpoly(color = "red") +
   geom_histogram(color = "black", alpha = 0.5) +
   ylab("Count") +
-  labs(title = "Histogram + Density line of Distance to Tumor cell")
+  labs(title = "Histogram + Frequency Polygon of Distance to Tumor cell")
 #dev.off()
 
 # ggplot of histogram and density line of tumor data H+
-#png(file = "./histogram_density_line_distance_tumor_cell_hpositive.png")
+#png(file = "./histogram_freq_poly_distance_tumor_cell_hpositive.png")
 tumor_data_hpositive <- tumor_data[tumor_data$Cell_type == "H+",]
 ggplot(tumor_data_hpositive, aes(x = Distance)) +
   geom_freqpoly(color = "#00BFC4") +
   geom_histogram(color = "#00BFC4", fill = "#00BFC4", alpha = 0.5) +
   ylab("Count") +
-  labs(title = "Histogram + Density line of Distance to Tumor cell H+")
+  labs(title = "Histogram + Frequency Polygon of Distance to Tumor cell H+")
 #dev.off()
 
 # ggplot of histogram and density line of tumor data H-
-#png(file = "./histogram_density_line_distance_tumor_cell_hnegative.png")
+#png(file = "./histogram_freq_poly_distance_tumor_cell_hnegative.png")
 tumor_data_hnegative <- tumor_data[tumor_data$Cell_type == "H-",]
 ggplot(tumor_data_hnegative, aes(x = Distance)) +
   geom_freqpoly(color = "#F8766D") +
   geom_histogram(color = "#F8766D", fill = "#F8766D", alpha = 0.5) +
   ylab("Count") +
-  labs(title = "Histogram + Density line of Distance to Tumor cell H-")
+  labs(title = "Histogram + Frequency Polygon of Distance to Tumor cell H-")
 #dev.off()
 
 # ggplot of histogram and frequency of t cell data
-#png(file = "./histogram_density_line_distance_t_cell.png")
+#png(file = "./histogram_freq_poly_distance_t_cell.png")
 ggplot(t_cell_data, aes(x = Distance)) +
   geom_freqpoly(color = "red") +
   geom_histogram(color = "black", alpha = 0.5) +
   ylab("Count") +
-  labs(title = "Histogram + Density line of Distance to T-cell")
+  labs(title = "Histogram + Frequency Polygon of Distance to T-cell")
 #dev.off()
 
 # ggplot of histogram and density line of t cell data H+
-#png(file = "./histogram_density_line_distance_t_cell_hpositive.png")
+#png(file = "./histogram_freq_poly_distance_t_cell_hpositive.png")
 t_cell_data_hpositive <- t_cell_data[t_cell_data$Cell_type == "H+",]
 ggplot(t_cell_data_hpositive, aes(x = Distance)) +
   geom_freqpoly(color = "#00BFC4") +
   geom_histogram(color = "#00BFC4", fill = "#00BFC4", alpha = 0.5) +
   ylab("Count") +
-  labs(title = "Histogram + Density line of Distance to T cell H+")
+  labs(title = "Histogram + Frequency Polygon of Distance to T cell H+")
 #dev.off()
 
 # ggplot of histogram and density line of t cell data H-
-#png(file = "./histogram_density_line_distance_t_cell_hnegative.png")
+#png(file = "./histogram_freq_poly_distance_t_cell_hnegative.png")
 t_cell_data_hnegative <- t_cell_data[t_cell_data$Cell_type == "H-",]
 ggplot(t_cell_data_hnegative, aes(x = Distance)) +
   geom_freqpoly(color = "#F8766D") +
   geom_histogram(color = "#F8766D", fill = "#F8766D", alpha = 0.5) +
   ylab("Count") +
-  labs(title = "Histogram + Density line of Distance to T cell H-")
+  labs(title = "Histogram + Frequency Polygon of Distance to T cell H-")
 #dev.off()
 ```
 
